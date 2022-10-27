@@ -1,12 +1,19 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
+
+import Card from './components/Cards';
+import CreateCard from './components/CreateCard';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <Routes>
-      <Route path='/' element={}/>
-      <Route path='/cards' element={}/>
-    </Routes>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<CreateCard />}/>
+        <Route path='/cards' element={<Card />}/>
+      </Routes>
+    </>
   );
 }
 
