@@ -1,11 +1,11 @@
-import AppBar from '@mui/material/AppBar';
-import Container from '@mui/material/Container';
-import Toolbar from '@mui/material/Toolbar';
+import { useEffect } from 'react';
+
+import { Typography, Toolbar, Container, AppBar } from '@mui/material';
 import { styled } from '@mui/system';
 
 import { Link, useLocation } from 'react-router-dom';
 
-const NavHomeLink = styled(Link)`
+const NavLink = styled(Link)`
     text-decoration: none;
     color: white;
     font-size: 23px;
@@ -13,22 +13,14 @@ const NavHomeLink = styled(Link)`
     letter-spacing: 3px;
     padding: 10px 0;
     margin: 0 10px;
-    ${location.pathname === '/' || location.pathname === '/todo-mui-react' && 'text-decoration: underline'}
-`;
-
-const NavCardsLink = styled(Link)`
-    text-decoration: none;
-    color: white;
-    font-size: 23px;
-    font-weight: 900;
-    letter-spacing: 3px;
-    padding: 10px 0;
-    margin: 0 10px;
-    ${location.pathname === '/cards' && 'text-decoration: underline'}
 `;
 
 const Navbar: React.FC = () => {
     const location = useLocation();
+
+    useEffect(() => {
+        console.log(location)
+    }, [location])
 
     return(
         <>
@@ -40,8 +32,32 @@ const Navbar: React.FC = () => {
             >
                  <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                        <NavHomeLink to='/'>HOME</NavHomeLink>
-                        <NavCardsLink to='/cards'>CARDS</NavCardsLink>
+                        <NavLink to='/'>
+                            <Typography 
+                                variant="h2" 
+                                sx={{ 
+                                    fontSize: '23px', 
+                                    padding: '10px', 
+                                    borderRadius: '15px', 
+                                    ...(location.pathname === '/' && {backgroundColor: '#496bd1',})
+                                }}
+                            >
+                                HOME
+                            </Typography>
+                        </NavLink>
+                        <NavLink to='/cards'>
+                            <Typography 
+                                variant="h2" 
+                                sx={{ 
+                                    fontSize: '23px', 
+                                    padding: '10px', 
+                                    borderRadius: '15px', 
+                                    ...(location.pathname === '/cards' && {backgroundColor: '#496bd1',})
+                                }}
+                            >
+                                CARDS
+                            </Typography>
+                        </NavLink>
                     </Toolbar>
                  </Container>
             </AppBar>
