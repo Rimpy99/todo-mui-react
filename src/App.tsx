@@ -11,6 +11,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<CreateCard />}/>
+        <Route path='/todo-mui-react' element={<CreateCard />}/>
         <Route path='/cards' element={<Card />}/>
       </Routes>
     </>

@@ -1,36 +1,50 @@
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import AppBar from '@mui/material/AppBar';
+import Container from '@mui/material/Container';
+import Toolbar from '@mui/material/Toolbar';
+import { styled } from '@mui/system';
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
+const NavHomeLink = styled(Link)`
+    text-decoration: none;
+    color: white;
+    font-size: 23px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    padding: 10px 0;
+    margin: 0 10px;
+    ${location.pathname === '/' || location.pathname === '/todo-mui-react' && 'text-decoration: underline'}
+`;
+
+const NavCardsLink = styled(Link)`
+    text-decoration: none;
+    color: white;
+    font-size: 23px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    padding: 10px 0;
+    margin: 0 10px;
+    ${location.pathname === '/cards' && 'text-decoration: underline'}
+`;
 
 const Navbar: React.FC = () => {
+    const location = useLocation();
+
     return(
         <>
-            <Drawer
+            <AppBar
+                position='fixed'
                 sx={{
-                    width: 300,
-                    '& .MuiDrawer-paper': {
-                        width: 300,
-                        boxSizing: 'border-box',
-                      },
+                    backgroundColor: '#6b90ff',
                 }}
-                variant='permanent'
-                anchor='left'
             >
-                <List>
-                    <ListItem>
-                        <Link to='/'>HOME</Link>
-                    </ListItem>
-                    <ListItem>
-                        <Link to='/cards'>CARDS</Link>
-                    </ListItem>
-                </List>
-            </Drawer>
+                 <Container maxWidth="xl">
+                    <Toolbar disableGutters>
+                        <NavHomeLink to='/'>HOME</NavHomeLink>
+                        <NavCardsLink to='/cards'>CARDS</NavCardsLink>
+                    </Toolbar>
+                 </Container>
+            </AppBar>
         </>
     )
 }
