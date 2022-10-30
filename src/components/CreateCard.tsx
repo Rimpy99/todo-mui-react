@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { styled } from '@mui/system';
 import { Box, TextField, Button } from '@mui/material';
 
@@ -23,9 +25,18 @@ const ButtonContainer = styled('div')({
     alignItems: 'center',
 })
 
+const ButtonCustomized = styled(Button)({
+    fontSize: '20px',
+    backgroundColor: '#6b90ff',
+    '&:hover': {
+        backgroundColor: '#496bd1'  
+    }
+})
+
 const CreateCard: React.FC = () => {
 
-    //test2
+    const [cardTitle, setCardTitle] = useState<string>("");
+    const [cardDesc, setCardDesc] = useState<string>("");
 
     return(
         <Box
@@ -41,14 +52,16 @@ const CreateCard: React.FC = () => {
                     inputProps={{
                         maxlength: 48,
                     }}
+                    onChange={(e) => setCardTitle(e.target.value)}
                 />
                 <TextFieldCustomized
                     label="Add description"
                     multiline
                     rows={4}
+                    onChange={(e) => setCardDesc(e.target.value)}
                 />
                 <ButtonContainer>
-                    <Button sx={{fontSize: '20px',}}>Add card</Button>
+                    <ButtonCustomized variant='contained'>Add card</ButtonCustomized>
                 </ButtonContainer>
             </CardContent>
         </Box>
