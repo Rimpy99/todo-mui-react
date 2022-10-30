@@ -1,8 +1,10 @@
 
+
 const Card: React.FC = () => {
+
     return(
         <>
-            CARD!
+            
         </>
     )
 }
