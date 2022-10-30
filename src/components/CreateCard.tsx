@@ -35,8 +35,22 @@ const ButtonCustomized = styled(Button)({
 
 const CreateCard: React.FC = () => {
 
-    const [cardTitle, setCardTitle] = useState<string>("");
-    const [cardDesc, setCardDesc] = useState<string>("");
+    const [cardTitle, setCardTitle] = useState<string>('');
+    const [cardDesc, setCardDesc] = useState<string>('');
+    const [cardTitleError, setCardTitleError] = useState<boolean>(false);
+
+    const sendCard = () => {
+
+        if(cardTitle === ''){
+            setCardTitleError(true);
+        }else{
+            setCardTitleError(false);
+            //send
+            setCardTitle('');
+            setCardDesc('');
+        }
+
+    }
 
     return(
         <Box
@@ -48,20 +62,23 @@ const CreateCard: React.FC = () => {
             <CardContent>
                 <TextFieldCustomized
                     label="Add title"
+                    value={cardTitle}
                     required
                     inputProps={{
                         maxlength: 48,
                     }}
                     onChange={(e) => setCardTitle(e.target.value)}
+                    error={cardTitleError}
                 />
                 <TextFieldCustomized
                     label="Add description"
+                    value={cardDesc}
                     multiline
                     rows={4}
                     onChange={(e) => setCardDesc(e.target.value)}
                 />
                 <ButtonContainer>
-                    <ButtonCustomized variant='contained'>Add card</ButtonCustomized>
+                    <ButtonCustomized variant='contained' onClick={() => sendCard()}>Add card</ButtonCustomized>
                 </ButtonContainer>
             </CardContent>
         </Box>
