@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
                                     fontSize: '23px', 
                                     padding: '10px', 
                                     borderRadius: '15px', 
-                                    ...(location.pathname === '/' && {backgroundColor: '#496bd1',})
+                                    ...((location.pathname === '/' || location.pathname === '/todo-mui-react') && {backgroundColor: '#496bd1',})
                                 }}
                             >
                                 HOME
