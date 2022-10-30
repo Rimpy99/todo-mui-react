@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { styled } from '@mui/system';
 import { Box, TextField, Button } from '@mui/material';
@@ -6,13 +6,21 @@ import { Box, TextField, Button } from '@mui/material';
 const CardContent = styled('div')({
     backgroundColor: 'aliceblue',
     width: '550px',
-    height: '400px',
+    height: '450px',
     display: 'flex',
     flexDirection: 'column',
     padding: '40px',
     borderRadius: '20px',
     boxShadow: '0px 9px 20px -7px rgba(66, 68, 90, 1)',
 });
+
+const SuccessfulNotification = styled('div')({
+    textAlign: 'center',
+    fontSize: '18px',
+    color: 'green',
+    padding: '15px 0',
+    userSelect: 'none',
+})
 
 const TextFieldCustomized = styled(TextField)({
     marginTop: '20px',
@@ -38,6 +46,21 @@ const CreateCard: React.FC = () => {
     const [cardTitle, setCardTitle] = useState<string>('');
     const [cardDesc, setCardDesc] = useState<string>('');
     const [cardTitleError, setCardTitleError] = useState<boolean>(false);
+    const [success, setSuccess] = useState<boolean>(false);
+
+    useEffect(() => {
+
+        if(success === true){
+
+            setTimeout(() => {
+
+                setSuccess(false);
+
+            }, 2000);
+
+        }
+
+    }, [success])
 
     const sendCard = () => {
 
@@ -48,6 +71,8 @@ const CreateCard: React.FC = () => {
             //send
             setCardTitle('');
             setCardDesc('');
+
+            setSuccess(true);
         }
 
     }
@@ -60,6 +85,9 @@ const CreateCard: React.FC = () => {
             minHeight="100vh"
         >
             <CardContent>
+                <SuccessfulNotification sx={{ ...(success ? { opacity: 1, } : { opacity: 0, }) }}>
+                    <p>Card was created successfully.</p>
+                </SuccessfulNotification>
                 <TextFieldCustomized
                     label="Add title"
                     value={cardTitle}

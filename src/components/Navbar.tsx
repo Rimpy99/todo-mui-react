@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
                                 sx={{ 
                                     fontSize: '23px', 
                                     padding: '10px', 
-                                    borderRadius: '15px', 
+                                    borderRadius: '5px', 
                                     ...((location.pathname === '/' || location.pathname === '/todo-mui-react') && {backgroundColor: '#496bd1',})
                                 }}
                             >
@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
                                 sx={{ 
                                     fontSize: '23px', 
                                     padding: '10px', 
-                                    borderRadius: '15px', 
+                                    borderRadius: '5px', 
                                     ...(location.pathname === '/cards' && {backgroundColor: '#496bd1',})
                                 }}
                             >
