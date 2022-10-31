@@ -81,7 +81,7 @@ const CreateCard: React.FC = () => {
         <Box
             display='flex'
             justifyContent="center"
-            alignItems="center"
+            alignItems="center" 
             minHeight="100vh"
         >
             <CardContent>
