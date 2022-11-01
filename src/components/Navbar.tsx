@@ -18,10 +18,6 @@ const NavLink = styled(Link)`
 const Navbar: React.FC = () => {
     const location = useLocation();
 
-    useEffect(() => {
-        console.log(location)
-    }, [location])
-
     return(
         <>
             <AppBar

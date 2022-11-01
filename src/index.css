@@ -9,7 +9,7 @@
 
 body{
   background: rgb(201,233,255);
-  background: linear-gradient(61deg, rgba(201,233,255,1) 0%, rgba(237,243,255,1) 100%);
+  background: linear-gradient(61deg, rgb(166, 205, 231) 0%, rgba(237,243,255,1) 100%);
 }
 
 

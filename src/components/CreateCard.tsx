@@ -3,6 +3,10 @@ import { useState, useEffect } from 'react';
 import { styled } from '@mui/system';
 import { Box, TextField, Button } from '@mui/material';
 
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { addCard }  from '../features/cardsSlice';
+
+
 const CardContent = styled('div')({
     backgroundColor: 'aliceblue',
     width: '550px',
@@ -43,6 +47,8 @@ const ButtonCustomized = styled(Button)({
 
 const CreateCard: React.FC = () => {
 
+    const dispatch = useAppDispatch();
+
     const [cardTitle, setCardTitle] = useState<string>('');
     const [cardDesc, setCardDesc] = useState<string>('');
     const [cardTitleError, setCardTitleError] = useState<boolean>(false);
@@ -68,7 +74,18 @@ const CreateCard: React.FC = () => {
             setCardTitleError(true);
         }else{
             setCardTitleError(false);
-            //send
+            
+            dispatch(
+                addCard(
+                    {
+                        id: Date.now(),
+                        title: cardTitle,
+                        desc: cardDesc,
+                        isCompleted: false,
+                    }
+                )
+            )
+
             setCardTitle('');
             setCardDesc('');
 
