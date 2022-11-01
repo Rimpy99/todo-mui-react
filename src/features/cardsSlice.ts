@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type Card = {
-    id: number,
+    id: number
     title: string
     desc: string
     isCompleted: boolean
@@ -9,7 +9,7 @@ type Card = {
 
 const initialState: Card[] = [];
 
-export const cardsSlice = createSlice({
+const cardsSlice = createSlice({
     name: 'cards',
     initialState,
     reducers: {
