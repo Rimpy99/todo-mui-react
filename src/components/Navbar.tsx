@@ -21,9 +21,10 @@ const Navbar: React.FC = () => {
     return(
         <>
             <AppBar
-                position='fixed'
+                position='static'
                 sx={{
                     backgroundColor: '#6b90ff',
+                    height: '5vh',
                 }}
             >
                  <Container maxWidth="xl">

@@ -99,7 +99,7 @@ const CreateCard: React.FC = () => {
             display='flex'
             justifyContent="center"
             alignItems="center" 
-            minHeight="100vh"
+            minHeight="95vh"
         >
             <CardContent>
                 <SuccessfulNotification sx={{ ...(success ? { opacity: 1, } : { opacity: 0, }) }}>

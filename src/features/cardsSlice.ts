@@ -17,7 +17,12 @@ const cardsSlice = createSlice({
             state.push(action.payload);
         },
         removeCard: (state, action: PayloadAction<number>) => {
-            state.filter(card => card.id !== action.payload);
+            // console.log(action.payload)
+            // state = state.filter(card => card.id !== action.payload);
+            // console.log(state)
+
+            const index = state.findIndex((todo) => todo.id === action.payload);
+            state.splice(index, 1);
         }
     }
 });

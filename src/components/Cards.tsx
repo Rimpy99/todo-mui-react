@@ -1,33 +1,57 @@
-import { Box } from '@mui/material';
-import Masonry from '@mui/lab/Masonry';
+import { useEffect } from 'react';
 
-import { useAppSelector } from '../app/hooks';
+import { Box, Paper } from '@mui/material';
+import Masonry from '@mui/lab/Masonry';
+import { styled } from '@mui/system';
+
+import { useAppSelector, useAppDispatch } from '../app/hooks';
+import { removeCard }  from '../features/cardsSlice';
 // import { useSelector } from 'react-redux';
 // import { RootState } from '../app/store';
 
+const BoxCustomized = styled(Box)({
+    minHeight: '95vh',
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: '50px',
+})
+
+const MasonryCustomized = styled(Masonry)({
+    width: '70%',
+})
+
+const CardCustomized = styled(Paper)({
+    width: '250px',
+    backgroundColor: 'red',
+})
+
 const Card: React.FC = () => {
+
+    const dispatch = useAppDispatch();
 
     const cards = useAppSelector((state) => state.cards);
 
-    console.log(cards.length)
+    useEffect(() => {
+        
+        console.log(cards)
+
+    }, [cards])
+
 
     // cards.map(e => console.log(e.title))
 
     return(
-        <Box 
-            minHeight="100vh"
-        >
-            <Masonry columns={4} spacing={2}>
+        <BoxCustomized>
+            <MasonryCustomized columns={3} spacing={2}>
                 {cards.map((e) => (
-                    <div>{e.title}</div>
+                    <CardCustomized>
+                        <h1>{e.title}</h1>
+                        <h2>{e.desc}</h2>
+                        <button onClick={() => dispatch(removeCard(e.id))}>DELETE</button>
+                    </CardCustomized>
                 ))}
-            </Masonry>
-        </Box>
-        // <div>
-        //     {cards.length !== 0 && cards.map((card) => (
-        //         <h1>{card.title}</h1>
-        //     ))}
-        // </div>
+            </MasonryCustomized>
+        </BoxCustomized>
     )
 }
 
