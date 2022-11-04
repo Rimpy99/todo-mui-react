@@ -18,10 +18,14 @@ const cardsSlice = createSlice({
         },
         removeCard: (state, action: PayloadAction<number>) => {
             // console.log(action.payload)
-            // state = state.filter(card => card.id !== action.payload);
+            // const newState = state.filter(card => card.id !== action.payload);
+            // console.log(newState)
+            // state = newState;
+            // console.log(state)
             // console.log(state)
 
             const index = state.findIndex((todo) => todo.id === action.payload);
+            console.log(index)
             state.splice(index, 1);
         }
     }

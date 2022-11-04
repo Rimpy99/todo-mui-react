@@ -1,28 +1,36 @@
 import { useEffect } from 'react';
 
-import { Box, Paper } from '@mui/material';
-import Masonry from '@mui/lab/Masonry';
+import { Box, Grid } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { styled } from '@mui/system';
 
 import { useAppSelector, useAppDispatch } from '../app/hooks';
 import { removeCard }  from '../features/cardsSlice';
-// import { useSelector } from 'react-redux';
-// import { RootState } from '../app/store';
+import { normalize } from 'path';
 
 const BoxCustomized = styled(Box)({
     minHeight: '95vh',
-    display: 'flex',
-    justifyContent: 'center',
     paddingTop: '50px',
 })
 
-const MasonryCustomized = styled(Masonry)({
-    width: '70%',
+const CardCustomized = styled('div')({
+    width: '400px',
+    height: '480px',
+    backgroundColor: 'white',
+    borderRadius: '10px',
+    padding: '15px',
+    wordBreak:'break-all',
 })
 
-const CardCustomized = styled(Paper)({
-    width: '250px',
-    backgroundColor: 'red',
+const CardHeader = styled('div')({
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: '50px',
+})
+
+const CardDesc = styled('p')({
+    paddingTop: '20px',
 })
 
 const Card: React.FC = () => {
@@ -42,15 +50,30 @@ const Card: React.FC = () => {
 
     return(
         <BoxCustomized>
-            <MasonryCustomized columns={3} spacing={2}>
+            <Grid 
+                container
+                direction="row"
+                justifyContent="center"
+                spacing={2}
+            >
                 {cards.map((e) => (
-                    <CardCustomized>
-                        <h1>{e.title}</h1>
-                        <h2>{e.desc}</h2>
-                        <button onClick={() => dispatch(removeCard(e.id))}>DELETE</button>
-                    </CardCustomized>
+                    <Grid item>
+                        <CardCustomized>
+                            <CardHeader>
+                                <h3>{e.title}</h3>
+                                <DeleteIcon 
+                                    onClick={() => dispatch(removeCard(e.id))}
+                                    sx={{
+                                        cursor: 'pointer',
+                                        color: '#12074a',
+                                    }}
+                                />
+                            </CardHeader>
+                            <CardDesc>{e.desc}</CardDesc>
+                        </CardCustomized>
+                    </Grid>
                 ))}
-            </MasonryCustomized>
+            </Grid>
         </BoxCustomized>
     )
 }

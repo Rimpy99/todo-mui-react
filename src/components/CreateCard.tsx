@@ -110,7 +110,7 @@ const CreateCard: React.FC = () => {
                     value={cardTitle}
                     required
                     inputProps={{
-                        maxlength: 48,
+                        maxlength: 20,
                     }}
                     onChange={(e) => setCardTitle(e.target.value)}
                     error={cardTitleError}
@@ -118,6 +118,9 @@ const CreateCard: React.FC = () => {
                 <TextFieldCustomized
                     label="Add description"
                     value={cardDesc}
+                    inputProps={{
+                        maxlength: 550,
+                    }}
                     multiline
                     rows={4}
                     onChange={(e) => setCardDesc(e.target.value)}
